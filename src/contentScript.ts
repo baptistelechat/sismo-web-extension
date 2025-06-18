@@ -1,9 +1,16 @@
 import { addClimateElements } from "./components/climateElements";
 
 const run = () => {
-  console.log("====================");
-  console.log("SISMO WEB EXTENSION");
-  console.log("====================");
+  console.log("===================================");
+  console.log(`
+   _____ _____  _____ __  __  ____  
+  / ____|_   _|/ ____|  \/  |/ __ \ 
+ | (___   | | | (___ | \  / | |  | |
+  \___ \  | |  \___ \| |\/| | |  | |
+  ____) |_| |_ ____) | |  | | |__| |
+ |_____/|_____|_____/|_|  |_|\____/ 
+ `);
+  console.log("===================================");
 
   const targetElements = document.querySelectorAll('div[role="complementary"]');
 
@@ -18,7 +25,7 @@ const run = () => {
       addClimateElements(xGj8MbDiv as HTMLElement);
     }
   });
-  console.log("====================");
+  console.log("===================================");
 };
 
 if (document.readyState === "loading") {
