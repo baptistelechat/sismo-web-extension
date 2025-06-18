@@ -1,32 +1,25 @@
-function run() {
-  console.log("Attempting to select target element");
-  console.log("Checking if target element exists");
-  const targetElement = document.querySelector('div[role="complementary"]');
-  console.log(targetElement);
-  
-  if (targetElement) {
-    // Récupérer le style calculé de l'élément
-    const computedStyle = window.getComputedStyle(targetElement);
-    const flexDirection = computedStyle.getPropertyValue('flex-direction');
-    
-    console.log("Flex direction de l'élément cible:", flexDirection);
-    
-    const newParagraph = document.createElement("p");
-    
-    // Adapter l'affichage en fonction de la position
-    if (flexDirection === "column") {
-      // Card dans la colonne de droite
-      newParagraph.textContent = "Lorem Ipsum - Affichage colonne";
-      newParagraph.style.color = "blue";
-    } else {
-      // Card en haut des résultats
-      newParagraph.textContent = "Lorem Ipsum - Affichage horizontal";
-      newParagraph.style.color = "red";
+import { addClimateElements } from "./components/climateElements";
+
+const run = () => {
+  console.log("Attempting to select target elements");
+  const targetElements = document.querySelectorAll('div[role="complementary"]');
+  console.log(`Nombre d'éléments trouvés: ${targetElements.length}`);
+
+  // Traiter chaque élément trouvé
+  targetElements.forEach((targetElement, index) => {
+    console.log(`Traitement de l'élément :`, targetElement);
+
+    // Vérifier si l'élément contient une div avec la classe xGj8Mb
+    const xGj8MbDiv = targetElement.querySelector("div.xGj8Mb");
+    console.log(`Div xGj8Mb trouvée dans l'élément :`, xGj8MbDiv);
+
+    if (xGj8MbDiv) {
+      // Utiliser la fonction externalisée pour ajouter les éléments
+      // Conversion explicite de Element vers HTMLElement
+      addClimateElements(xGj8MbDiv as HTMLElement);
     }
-    
-    targetElement.appendChild(newParagraph);
-  }
-}
+  });
+};
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", run);
