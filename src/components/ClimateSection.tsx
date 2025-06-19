@@ -4,6 +4,7 @@ import { formatClimateValue } from "../utils/formatClimateValue";
 import { getClimateData } from "../utils/getClimateValue";
 import { getCoordinates } from "../utils/getCoordinates";
 import ClimateElement from "./ClimateElement";
+import ErrorMessage from "./ErrorMessage";
 import Separator from "./Separator";
 
 interface ClimateSectionProps {
@@ -43,11 +44,10 @@ const ClimateSection: React.FC<ClimateSectionProps> = ({ address }) => {
         setSeismeValue(formatClimateValue(data.seisme_ec8, "seisme"));
         setLoading(false);
       } catch (err) {
-        console.error(
-          "Erreur lors de la récupération des données climatiques:",
-          err
-        );
-        setError("Erreur lors de la récupération des données");
+        const errorMessage =
+          "Erreur lors de la récupération des zones Vent, Neige et Séisme";
+        console.error(`${errorMessage}:`, err);
+        setError(errorMessage);
         setLoading(false);
       }
     };
@@ -60,9 +60,23 @@ const ClimateSection: React.FC<ClimateSectionProps> = ({ address }) => {
   return (
     <>
       <Separator />
-      <ClimateElement label="Vent" value={ventValue} />
-      <ClimateElement label="Neige" value={neigeValue} />
-      <ClimateElement label="Séisme" value={seismeValue} />
+      {error ? (
+        <ErrorMessage message={error} />
+      ) : (
+        <>
+          <ClimateElement label="Vent" value={ventValue} isLoading={loading} />
+          <ClimateElement
+            label="Neige"
+            value={neigeValue}
+            isLoading={loading}
+          />
+          <ClimateElement
+            label="Séisme"
+            value={seismeValue}
+            isLoading={loading}
+          />
+        </>
+      )}
     </>
   );
 };
