@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import ClimateSection from "./components/ClimateSection";
+import "./index.css";
 
 const run = () => {
   console.log("===================================");

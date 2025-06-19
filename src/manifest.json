@@ -22,7 +22,8 @@
   "content_scripts": [
     {
       "matches": ["https://www.google.com/*"],
-      "js": ["src/contentScript.tsx"]
+      "js": ["src/contentScript.tsx"],
+      "css": ["src/index.css"]
     }
   ]
 }
