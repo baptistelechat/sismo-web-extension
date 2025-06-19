@@ -17,5 +17,14 @@
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
-  }
+  },
+  "permissions": ["activeTab", "scripting"],
+  "{{firefox}}.permissions": ["*://api-adresse.data.gouv.fr/*", "*://us-central1-aibolide-b291c.cloudfunctions.net/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/*"],
+      "js": ["src/contentScript.tsx"],
+      "css": ["src/index.css"]
+    }
+  ]
 }
