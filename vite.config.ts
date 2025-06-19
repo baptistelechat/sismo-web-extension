@@ -8,7 +8,7 @@ function generateManifest() {
   const manifest = readJsonFile("src/manifest.json");
   const pkg = readJsonFile("package.json");
   return {
-    name: pkg.name,
+    name: "Sismo",
     description: pkg.description,
     version: pkg.version,
     ...manifest,
@@ -16,12 +16,18 @@ function generateManifest() {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, mode }) => {
+  // Déterminer le navigateur cible à partir des arguments de ligne de commande
+  // Par défaut, on cible Chrome
+  const browser = process.env.BROWSER || 'chrome';
+  
+  return {
   plugins: [
     react(),
     tailwindcss(),
     webExtension({
       manifest: generateManifest,
+      browser: browser,
     }),
   ],
   resolve: {
@@ -29,4 +35,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  };
 });

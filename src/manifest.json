@@ -19,6 +19,7 @@
     "{{firefox}}.scripts": ["src/background.ts"]
   },
   "permissions": ["activeTab", "scripting"],
+  "{{firefox}}.permissions": ["*://api-adresse.data.gouv.fr/*", "*://us-central1-aibolide-b291c.cloudfunctions.net/*"],
   "content_scripts": [
     {
       "matches": ["https://www.google.com/*"],
